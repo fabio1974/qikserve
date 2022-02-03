@@ -16,14 +16,10 @@ function App() {
 
     const productOptions = products.map((p)=> <option key={p.id} value={p.id}>{p.name}</option>)
 
-
     useEffect(async () => {
             const result = await axios('http://localhost:8080/api/products');
-            console.log("result",result.data);
             setProducts(result.data)
     },[]);
-
-
 
 
     async function createNewBasket(){
@@ -39,12 +35,9 @@ function App() {
         let items = basket['items'];
         items.push(newItem);
         await setBasket({...basket,items});
-        console.log("new basket",basket)
         await setBasketOptions(basket['items'].map((item,index) => {
-            console.log("item", item)
             return (<option key={index} value={item.id}>{item.quantity} X {products.find(p=> p.id==item.product.id).name}</option>);
         }))
-
     }
 
     async function handleChangeProduct(evt){

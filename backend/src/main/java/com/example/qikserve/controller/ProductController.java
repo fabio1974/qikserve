@@ -5,6 +5,7 @@ import com.example.qikserve.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,8 +26,9 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public Optional<Product> getPostsPage(@PathVariable(value = "id") Long id) {
-        return productRepository.findById(id);
+    public List<Product> getPostsPage() {
+        var list =  productRepository.findAll();
+        return list;
     }
 
 

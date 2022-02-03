@@ -25,18 +25,20 @@ public class BasketController {
     BasketRepository basketRepository;
 
     @PostMapping("/baskets")
-    public void create(@RequestBody Basket basket){
+    public Basket create(@RequestBody Basket basket){
         User user = userService.findOrSave(basket.getUser());
         basket.setUser(user);
         basketRepository.save(basket);
+        return basket;
     }
 
     @PostMapping("/baskets/{id}/addItem")
-    public void create(@PathVariable(value = "id") Long id, @RequestBody Item item){
+    public Basket create(@PathVariable(value = "id") Long id, @RequestBody Item item){
         Basket basket = basketRepository.findById(id).orElse(null);
         item.setBasket(basket);
         basket.getItems().add(item);
         basketRepository.save(basket);
+        return basket;
     }
 
     @GetMapping("/baskets")

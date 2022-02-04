@@ -46,13 +46,7 @@ public abstract class Promotion {
         this.requiredQty = requiredQty;
     }
 
-/*    public PromotionType getType() {
-        return type;
-    }
-
-    public void setType(PromotionType type) {
-        this.type = type;
-    }*/
-
+    //calculates the value saved based on the type of promotion
+    // and quantity of products for the item
     public abstract Double calculateValue(Integer quantity);
 }

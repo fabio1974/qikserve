@@ -8,29 +8,43 @@ function App() {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [basket,setBasket] = useState();
+    const [checked,setChecked] = useState(false);
+    const [purchasing,setPurchasing] = useState(false);
     const [basketOptions,setBasketOptions] = useState();
     const [products, setProducts] = useState([]);
     const [productPromotions, setProductPromotions] = useState([]);
     const [selectedProduct,setSelectedProduct] = useState();
     const [quantity, setQuantity] = useState(0);
+    const [output, setOutput] = useState([]);
+    const [running,setRunning] = useState(false)
 
-    const productOptions = products.map((p)=> <option key={p.id} value={p.id}>{p.name}</option>)
+    const productOptions = products.map((p)=> <option key={p.id} value={p.id}>{p.name} - £{p.price}</option>)
 
     useEffect(async () => {
+            setRunning(true);
             const result = await axios('http://localhost:8080/api/products');
             setProducts(result.data)
+            setRunning(false);
     },[]);
 
 
     async function createNewBasket(){
+        setRunning(true);
         let newBAsket = {user:{name,email},"items":[]}
         await setBasket(newBAsket);
         setBasketOptions([]);
-        //const result = await axios.post('http://localhost:8080/api/baskets',{user:{name,email}});
-        //await setBasket(result.data);
+        setProductPromotions([]);
+        setOutput(<div></div>)
+        setPurchasing(true);
+        setQuantity(0);
+        setSelectedProduct(null);
+        const result = await axios.post('http://localhost:8080/api/baskets',{user:{name,email}});
+        await setBasket(result.data);
+        setRunning(false);
     }
 
     async function addItem(event){
+        setRunning(true);
         const newItem = {"product":selectedProduct,quantity}
         let items = basket['items'];
         items.push(newItem);
@@ -38,6 +52,8 @@ function App() {
         await setBasketOptions(basket['items'].map((item,index) => {
             return (<option key={index} value={item.id}>{item.quantity} X {products.find(p=> p.id==item.product.id).name}</option>);
         }))
+        const result = await axios.post(`http://localhost:8080/api/baskets/${basket['id']}/addItem`,newItem);
+        setRunning(false);
     }
 
     async function handleChangeProduct(evt){
@@ -49,96 +65,117 @@ function App() {
 
     }
 
+    async function checkout(){
+        setRunning(true);
+        if(basket['items'].length==0) {
+            alert('Add Items do the basket!')
+            return;
+        }
+
+        setPurchasing(false);
+        const result = await axios.get(`http://localhost:8080/api/baskets/${basket['id']}/checkout`);
+        setBasket(result.data);
+
+        setOutput(
+            <div>
+            <label>Receipt After Apply Promotions</label>
+            <table className="table table-striped table-bordered ">
+                <thead>
+                <tr>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Total Price</td>
+                    <td>Total Promos</td>
+                    <td>Paid</td>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    result.data['items'].map((item, index) => {
+                        let product = products.find(p => p.id == item.product);
+                        let totalItemPrice = item.quantity * product.price;
+                        return (
+                            <tr key={index}>
+                                <td>{product.name}</td>
+                                <td>£{product.price}</td>
+                                <td>{item.quantity}</td>
+                                <td>£{totalItemPrice}</td>
+                                <td>£{item.bestPromotionValue}</td>
+                                <td>£{totalItemPrice - item.bestPromotionValue}</td>
+                            </tr>
+                        );
+                    })
+                }
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colSpan={3}>{<label>Total</label>}</td>
+                    <td>{result.data.total}</td>
+                    <td>{result.data.totalSaved}</td>
+                    <td>{result.data.totalPayble}</td>
+                </tr>
+                </tfoot>
+            </table>
+            </div>
+        );
+        setRunning(false);
+    }
+
     return (
         <div className="card">
             <div className="card-body ">
-
                 <form>
-
                     <div className="row mb-4">
-
                       <div className="col-4 form-inline">
                           <div className="form-group">
                               <label >Name</label>
-                              <input type="text" required onChange={evt=>setName(evt.target.value)} className="form-control" id="name" />
+                              <input type="text" disabled={purchasing} required onChange={evt=>setName(evt.target.value)} className="form-control" id="name" />
                           </div>
                       </div>
-
                       <div className="col-4 form-inline">
                           <div className="form-group ">
                               <label >Email</label>
-                              <input type="text" required onChange={evt=>setEmail(evt.target.value)} className="form-control" id="email" />
+                              <input type="text" disabled={purchasing} required onChange={evt=>setEmail(evt.target.value)} className="form-control" id="email" />
                           </div>
                       </div>
-
                       <div className="col-4 mt-4">
-
-                          <button type="button" onClick={createNewBasket} className="d-inline btn btn-success me-3">New Purchase</button>
+                          <button type="button" disabled={running || !name || !email} onClick={createNewBasket} className="d-inline btn btn-success me-3">New Purchase</button>
                       </div>
-
                     </div>
-
                     <div className="row mb-4">
                         <div className="col-4">
                             <label>Products</label>
-                            <select type="text" onChange={handleChangeProduct} className="form-control" name="T_" size="7">
+                            <select type="text" onChange={handleChangeProduct} disabled={!purchasing} className="form-control" name="T_" size="7">
                                 {productOptions}
                             </select>
                         </div>
-
                         <div className="col-4">
                             <label>Product Promotions</label>
-                            <select type="text" className="form-control" name="T_" size="7">
+                            <select type="text" className="form-control" disabled={!purchasing} name="T_" size="7">
                                 {productPromotions}
                             </select>
                         </div>
-
-
                         <div className="col-4">
-                            <label>Basket ID={basket?.id}</label>
-                            <select type="text" className="form-control" name="T_" size="7">
+                            <label>Basket Content</label>
+                            <select type="text" className="form-control" disabled={!purchasing} name="T_" size="7">
                                 {basketOptions}
                             </select>
                         </div>
-
-
                     </div>
-
-                    <div className="row mb-5">
+                    <div className="row mb-1">
                         <div className="col-12">
-                            <button type="button" onClick={addItem} className="d-inline btn btn-success">Add Item - Qty:</button>
-                            <input type={"number"} value={quantity} onChange={evt => setQuantity(evt.target.value)} className="d-inline form-control me-3 w-100" />
-                            <button type="button" className="d-inline btn btn-danger me-3">Delete Item</button>
-                            <button type="button" className="d-inline btn btn-warning me-3">Checkout</button>
+                            <button type="button" onClick={addItem} disabled={running || !purchasing || !selectedProduct || quantity==0}  className="d-inline btn btn-success">Add Item - Qty:</button>
+                            <input type={"number"} value={quantity} disabled={!purchasing} onChange={evt => setQuantity(evt.target.value)} className="d-inline form-control me-3 w-100" />
+                            <button type="button" onClick={checkout} disabled={running || !purchasing} className="d-inline btn btn-warning me-3">Checkout</button>
                         </div>
                     </div>
+
+                    <hr/>
 
                     <div className="row mb-4">
-                        <div>
-                        <label>Receipt After Apply Promotions</label>
-                        <table className="table-bordered ">
-                            <thead>
-                            <tr>
-                                <td>Product</td>
-                                <td>Quantity</td>
-                                <td>Total Price</td>
-                                <td>Promotion</td>
-                                <td>Paid</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Comida</td>
-                                <td>3</td>
-                                <td>21347</td>
-                                <td>213</td>
-                                <td>213</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        </div>
+                        {output}
                     </div>
-
                 </form>
             </div>
         </div>

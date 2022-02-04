@@ -1,6 +1,7 @@
 package com.example.qikserve.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -16,7 +17,8 @@ public class Item {
     public Item(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
-        calculatePromotion();
+        var bestPromotion = calculatePromotion();
+        setBestPromotionValue(bestPromotion);
     }
 
     @Id
@@ -24,6 +26,7 @@ public class Item {
     @Column(columnDefinition = "serial")
     private Long id;
 
+    @JoinColumn()
     @ManyToOne
     private Product product;
 
@@ -34,13 +37,13 @@ public class Item {
 
     private Double bestPromotionValue;
 
-    public void calculatePromotion(){
-        Double maxValue = 0.0;
+    public double calculatePromotion(){
+        Double bestPromotion = 0.0;
         for(Promotion promotion : product.getPromotions()){
             Double value = promotion.calculateValue(quantity);
-            maxValue = Math.max(maxValue,value);
+            bestPromotion = Math.max(bestPromotion,value);
         }
-        setBestPromotionValue(maxValue);
+        return bestPromotion;
     }
 
 

@@ -146,7 +146,7 @@ function App() {
                     <div className="row mb-4">
                         <div className="col-4">
                             <label>Products</label>
-                            <select type="text" onChange={handleChangeProduct} className="form-control" name="T_" size="7">
+                            <select type="text" onChange={handleChangeProduct}  className="form-control" name="T_" size="7">
                                 {productOptions}
                             </select>
                         </div>

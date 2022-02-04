@@ -9,8 +9,7 @@ public class PromotionBuyXGetYFree extends Promotion {
 
     @Override
     public Double calculateValue(Integer quantity) {
-        int n = quantity/getRequiredQty();
-        var quantityFree = quantity - n*getRequiredQty();
+        var quantityFree = (int) (quantity * ((double)freeQty/(freeQty+getRequiredQty())));
         Product product = this.getProduct();
         return product.getPrice() * quantityFree;
     }

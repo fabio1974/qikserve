@@ -11,9 +11,8 @@ public class PromotionQtyBasedPriceOverride extends Promotion {
     @Override
     public Double calculateValue(Integer quantity) {
         int n = quantity/getRequiredQty();
-        var amountCheaper = n * this.getPrice();
         Product product = this.getProduct();
-        return quantity * product.getPrice() - amountCheaper;
+        return n*getRequiredQty()*product.getPrice() - n*this.getPrice();
     }
 
 

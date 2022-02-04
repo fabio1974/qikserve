@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>virtualmind</artifactId>
+    <artifactId>qikserve</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>virtualmind</name>
-    <description>virtualmind</description>
+    <name>qikserve</name>
+    <description>qikserve</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -27,6 +27,11 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

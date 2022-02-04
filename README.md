@@ -18,3 +18,5 @@ To put them running, you need:
   ##### `npm start`
 
 If you run the frontend before the backend, don't forget to refresh the page after launching the backend to see the list of products from the database.
+
+4. Go to http://localhost:3000/

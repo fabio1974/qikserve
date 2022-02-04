@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae2bfa9d-7df0-491e-83ff-8de070be39e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionBuyXGetYFree.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionBuyXGetYFree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionQtyBasedPriceOverride.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionQtyBasedPriceOverride.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/test/java/com/example/qikserve/VirtualmindApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +80,7 @@
       <workItem from="1643814498453" duration="177000" />
       <workItem from="1643814704583" duration="11727000" />
       <workItem from="1643841339541" duration="19281000" />
-      <workItem from="1643937346892" duration="11455000" />
+      <workItem from="1643937346892" duration="13803000" />
     </task>
     <servers />
   </component>

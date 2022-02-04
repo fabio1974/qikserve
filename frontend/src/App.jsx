@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import {Circles} from 'react-loader-spinner';
 
 
 function App() {
@@ -19,6 +21,9 @@ function App() {
     const [running,setRunning] = useState(false)
 
     const productOptions = products.map((p)=> <option key={p.id} value={p.id}>{p.name} - £{p.price.toFixed(2)}</option>)
+
+    const spinner = <Circles color="#00BFFF" height={80} width={80}/>
+
 
     useEffect(async () => {
             setRunning(true);
@@ -123,6 +128,11 @@ function App() {
     }
 
     return (
+
+        <Fragment>
+
+            <Circles color="#00BFFF" height={80} width={80}/>
+
         <div className="card">
             <div className="card-body ">
                 <form>
@@ -136,7 +146,7 @@ function App() {
                       <div className="col-4 form-inline">
                           <div className="form-group ">
                               <label >Email</label>
-                              <input type="text" disabled={purchasing} required onChange={evt=>setEmail(evt.target.value)} className="form-control" id="email" />
+                              <input type="email" disabled={purchasing} required onChange={evt=>setEmail(evt.target.value)} className="form-control" id="email" />
                           </div>
                       </div>
                       <div className="col-4 mt-4">
@@ -146,7 +156,7 @@ function App() {
                     <div className="row mb-4">
                         <div className="col-4">
                             <label>Products</label>
-                            <select type="text" onChange={handleChangeProduct}  className="form-control" name="T_" size="7">
+                            <select type="text" onChange={handleChangeProduct} disabled={running || !basket} className="form-control" name="T_" size="7">
                                 {productOptions}
                             </select>
                         </div>
@@ -179,6 +189,8 @@ function App() {
                 </form>
             </div>
         </div>
+
+        </Fragment>
     );
 }
 

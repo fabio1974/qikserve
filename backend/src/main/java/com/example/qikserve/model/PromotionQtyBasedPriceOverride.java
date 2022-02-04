@@ -15,6 +15,11 @@ public class PromotionQtyBasedPriceOverride extends Promotion {
         return n*getRequiredQty()*product.getPrice() - n*this.getPrice();
     }
 
+    @Override
+    public String toString(){
+        return getRequiredQty()+ " for £" + price;
+    }
+
 
     //getters and setters
 

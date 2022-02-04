@@ -22,6 +22,7 @@ public abstract class Promotion {
 
     private Integer requiredQty;
 
+    private String description;
 
     //getters and setters
 
@@ -47,6 +48,14 @@ public abstract class Promotion {
 
     public void setRequiredQty(Integer requiredQty) {
         this.requiredQty = requiredQty;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     //calculates the value saved based on the type of promotion

@@ -15,7 +15,10 @@ public class ProductController {
 
     @PostMapping("/products")
     public void create(@RequestBody Product product){
-        product.getPromotions().forEach(p->{p.setProduct(product);});
+        product.getPromotions().forEach(p->{
+            p.setProduct(product);
+            p.setDescription(p.toString());
+        });
         productRepository.save(product);
     }
 

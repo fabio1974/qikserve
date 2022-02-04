@@ -1,8 +1,9 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import {Circles} from 'react-loader-spinner';
+import Spinner from 'react-bootstrap/Spinner';
+//import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+//import {Circles} from 'react-loader-spinner';
 
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
     const [running,setRunning] = useState(false)
 
     const productOptions = products.map((p)=> <option key={p.id} value={p.id}>{p.name} - £{p.price.toFixed(2)}</option>)
+    const spinner = running? <Fragment><Spinner animation="border" role="status"/>...loading!</Fragment> : ""
 
-    const spinner = <Circles color="#00BFFF" height={80} width={80}/>
+
 
 
     useEffect(async () => {
@@ -42,7 +44,7 @@ function App() {
         setOutput(<div></div>)
         setPurchasing(true);
         setQuantity(0);
-        setSelectedProduct(null);
+        //setSelectedProduct(null);
         const result = await axios.post('http://localhost:8080/api/baskets',{user:{name,email}});
         await setBasket(result.data);
         setRunning(false);
@@ -57,6 +59,7 @@ function App() {
         await setBasketOptions(basket['items'].map((item,index) => {
             return (<option key={index} value={item.id}>{item.quantity} X {products.find(p=> p.id==item.product.id).name}</option>);
         }))
+        setQuantity(0);
         const result = await axios.post(`http://localhost:8080/api/baskets/${basket['id']}/addItem`,newItem);
         setRunning(false);
     }
@@ -65,7 +68,7 @@ function App() {
         let prod = products.find(p=> p.id==evt.target.value)
         await setSelectedProduct(prod)
         await setProductPromotions(prod['promotions'].map(promo => {
-            return (<option key={promo.id} value={promo.id}>{promo.type}</option>);
+            return (<option key={promo.id} value={promo.id}>{promo.description}</option>);
         }))
 
     }
@@ -131,7 +134,7 @@ function App() {
 
         <Fragment>
 
-            <Circles color="#00BFFF" height={80} width={80}/>
+
 
         <div className="card">
             <div className="card-body ">
@@ -145,7 +148,7 @@ function App() {
                       </div>
                       <div className="col-4 form-inline">
                           <div className="form-group ">
-                              <label >Email</label>
+                              <label >A valid Email, please (no validation yet!)</label>
                               <input type="email" disabled={purchasing} required onChange={evt=>setEmail(evt.target.value)} className="form-control" id="email" />
                           </div>
                       </div>
@@ -174,10 +177,13 @@ function App() {
                         </div>
                     </div>
                     <div className="row mb-1">
-                        <div className="col-12">
+                        <div className="col-8">
                             <button type="button" onClick={addItem} disabled={running || !purchasing || !selectedProduct || quantity==0}  className="d-inline btn btn-success">Add Item - Qty:</button>
                             <input type={"number"} value={quantity} disabled={!purchasing} onChange={evt => setQuantity(evt.target.value)} className="d-inline form-control me-3 w-100" />
                             <button type="button" onClick={checkout} disabled={running || !purchasing} className="d-inline btn btn-warning me-3">Checkout</button>
+                        </div>
+                        <div className="col-4">
+                            {spinner}
                         </div>
                     </div>
 

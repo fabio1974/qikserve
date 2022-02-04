@@ -14,6 +14,10 @@ public class PromotionBuyXGetYFree extends Promotion {
         return product.getPrice() * quantityFree;
     }
 
+    @Override
+    public String toString(){
+        return "Buy "+ getRequiredQty()+ ", Get " + freeQty;
+    }
 
     //getters and setters
 

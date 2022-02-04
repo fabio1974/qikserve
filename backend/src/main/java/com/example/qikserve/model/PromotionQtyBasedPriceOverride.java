@@ -16,6 +16,9 @@ public class PromotionQtyBasedPriceOverride extends Promotion {
         return quantity * product.getPrice() - amountCheaper;
     }
 
+
+    //getters and setters
+
     public Double getPrice() {
         return price;
     }

@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae2bfa9d-7df0-491e-83ff-8de070be39e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/controller/BasketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/controller/BasketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/controller/ItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/controller/PromotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/controller/PromotionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Basket.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Basket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/Promotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionBuyXGetYFree.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionBuyXGetYFree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionQtyBasedPriceOverride.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionQtyBasedPriceOverride.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/PromotionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/repositories/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/repositories/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/repositories/PromotionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/qikserve/repositories/PromotionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
     </list>
@@ -79,7 +90,7 @@
       <workItem from="1643814498453" duration="177000" />
       <workItem from="1643814704583" duration="11727000" />
       <workItem from="1643841339541" duration="19281000" />
-      <workItem from="1643937346892" duration="9068000" />
+      <workItem from="1643937346892" duration="10231000" />
     </task>
     <servers />
   </component>

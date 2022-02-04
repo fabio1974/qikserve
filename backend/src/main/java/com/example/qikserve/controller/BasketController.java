@@ -2,20 +2,12 @@ package com.example.qikserve.controller;
 
 import com.example.qikserve.model.Basket;
 import com.example.qikserve.model.Item;
-import com.example.qikserve.model.Product;
 import com.example.qikserve.model.User;
 import com.example.qikserve.repositories.BasketRepository;
-import com.example.qikserve.repositories.UserRepository;
 import com.example.qikserve.service.BasketService;
 import com.example.qikserve.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.rmi.NoSuchObjectException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 public class BasketController {

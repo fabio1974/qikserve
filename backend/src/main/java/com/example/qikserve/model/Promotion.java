@@ -22,6 +22,9 @@ public abstract class Promotion {
 
     private Integer requiredQty;
 
+
+    //getters and setters
+
     public Long getId() {
         return id;
     }

@@ -15,6 +15,9 @@ public class PromotionBuyXGetYFree extends Promotion {
         return product.getPrice() * quantityFree;
     }
 
+
+    //getters and setters
+
     public Integer getFreeQty() {
         return freeQty;
     }

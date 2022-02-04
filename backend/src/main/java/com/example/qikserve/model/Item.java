@@ -1,7 +1,6 @@
 package com.example.qikserve.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -46,6 +45,8 @@ public class Item {
         return bestPromotion;
     }
 
+
+    //getters and setters
 
     public Long getId() {
         return id;

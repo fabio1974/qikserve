@@ -4,9 +4,8 @@ import com.example.qikserve.model.Product;
 import com.example.qikserve.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 public class ProductController {
@@ -20,16 +19,9 @@ public class ProductController {
         productRepository.save(product);
     }
 
-    @PutMapping("/products/{id}")
-    public void update(@RequestBody Product product){
-        productRepository.save(product);
-    }
-
     @GetMapping("/products")
     public List<Product> getPostsPage() {
-        var list =  productRepository.findAll();
-        return list;
+        return productRepository.findAll();
     }
-
 
 }

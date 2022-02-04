@@ -18,7 +18,7 @@ function App() {
     const [output, setOutput] = useState([]);
     const [running,setRunning] = useState(false)
 
-    const productOptions = products.map((p)=> <option key={p.id} value={p.id}>{p.name} - £{p.price}</option>)
+    const productOptions = products.map((p)=> <option key={p.id} value={p.id}>{p.name} - £{p.price.toFixed(2)}</option>)
 
     useEffect(async () => {
             setRunning(true);
@@ -98,11 +98,11 @@ function App() {
                         return (
                             <tr key={index}>
                                 <td>{product.name}</td>
-                                <td>£{product.price}</td>
+                                <td>£{product.price.toFixed(2)}</td>
                                 <td>{item.quantity}</td>
-                                <td>£{totalItemPrice}</td>
-                                <td>£{item.bestPromotionValue}</td>
-                                <td>£{totalItemPrice - item.bestPromotionValue}</td>
+                                <td>£{totalItemPrice.toFixed(2)}</td>
+                                <td>£{item.bestPromotionValue.toFixed(2)}</td>
+                                <td>£{(totalItemPrice - item.bestPromotionValue).toFixed(2)}</td>
                             </tr>
                         );
                     })
@@ -111,9 +111,9 @@ function App() {
                 <tfoot>
                 <tr>
                     <td colSpan={3}>{<label>Total</label>}</td>
-                    <td>{result.data.total}</td>
-                    <td>{result.data.totalSaved}</td>
-                    <td>{result.data.totalPayble}</td>
+                    <td>{result.data.total.toFixed(2)}</td>
+                    <td>{result.data.totalSaved.toFixed(2)}</td>
+                    <td>{result.data.totalPayble.toFixed(2)}</td>
                 </tr>
                 </tfoot>
             </table>
@@ -146,7 +146,7 @@ function App() {
                     <div className="row mb-4">
                         <div className="col-4">
                             <label>Products</label>
-                            <select type="text" onChange={handleChangeProduct} disabled={!purchasing} className="form-control" name="T_" size="7">
+                            <select type="text" onChange={handleChangeProduct} className="form-control" name="T_" size="7">
                                 {productOptions}
                             </select>
                         </div>

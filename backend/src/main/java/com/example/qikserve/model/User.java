@@ -33,6 +33,9 @@ public class User {
     private List<Basket> baskets = new ArrayList<>();
 
 
+
+    //getters and setters
+
     public Long getId() {
         return id;
     }

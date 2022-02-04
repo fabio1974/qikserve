@@ -30,6 +30,9 @@ public class Basket {
     @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
+
+    //getters and setters
+
     public Long getId() {
         return id;
     }
